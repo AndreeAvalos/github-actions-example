@@ -20,14 +20,19 @@ jobs:
       # You can test your matrix by printing the current dotnet version
       - name: Display dotnet version
         run: dotnet --version
-      - name: Download Repository
-        run: git clone https://github.com/AndreeAvalos/github-actions-example.git
+      - name: Download Repositories
+        run: git clone https://github.com/AndreeAvalos/github-actions-example.git |
+          git clone https://github.com/AndreeAvalos/github-actions-example-detail.git
       - name: List Projects
         run: ls
       - name: Setup dotnet
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Move to main project
+        run: cd github-actions-example
+      - name: List Elements
+        run: ls 
       - name: Install dependencies
         run: dotnet restore
       - name: Build
