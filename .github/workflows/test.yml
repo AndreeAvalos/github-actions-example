@@ -30,7 +30,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Move to main project
-        run: cd github-actions-example
+        run: cd ./github-actions-example/
       - name: List Elements
         run: ls 
       - name: Install dependencies
