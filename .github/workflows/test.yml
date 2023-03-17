@@ -9,7 +9,12 @@ jobs:
   first_job:
     runs-on: ubuntu-18.04
     steps:
-      - name: Echo the message
-        run: |
-          echo "My first github action"
-          
+      - name: Create App Folder
+        run: mkdir App
+      - name: Move to Folder
+        run: cd App
+      - name: Download Repository
+        run: git clone https://github.com/AndreeAvalos/github-actions-example.git
+      - name: List Projects
+        run: ls
+
