@@ -29,12 +29,13 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
-      - name: Move to main project
-        run: cd ./github-actions-example/
       - name: List Elements
         run: ls 
+        working-directory: ./github-actions-example
       - name: Install dependencies
         run: dotnet restore
+        working-directory: ./github-actions-example
       - name: Build
         run: dotnet build
+        working-directory: ./github-actions-example
 
