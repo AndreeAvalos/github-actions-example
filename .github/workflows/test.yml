@@ -8,13 +8,28 @@ on:
 jobs:
   first_job:
     runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x']
     steps:
-      - name: Create App Folder
-        run: mkdir App
-      - name: Move to Folder
-        run: cd App
+      - uses: actions/checkout@v3
+      - name: Setup dotnet ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      # You can test your matrix by printing the current dotnet version
+      - name: Display dotnet version
+        run: dotnet --version
       - name: Download Repository
         run: git clone https://github.com/AndreeAvalos/github-actions-example.git
       - name: List Projects
         run: ls
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build
 
